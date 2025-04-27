@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My App</title>
+    <style>
+        body {
+            background-image: url('/static/img/whiteboard-en-kasten-in-de-kamer_1639-13783.avif') !important;
+            background-size: cover;
+            width: 100%;
+	        height: 93vh;
+           
+        }
+
+        .center-div {
+            background-color: #f2f2f2;
+            padding: 20px;
+            margin-top: 100px;
+          }
+          .center-divbtn {
+            
+            padding: 20px;
+            margin-top: 100px;
+          }
+          .btn-margin {
+            
+            padding: 60px;
+            margin-top: 200px;
+          }
+
+    </style>
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="../staic/style.css">
+</head>
+
+<body>
+    <div class="col-md-4 offset-md-4 center-div">
+    <h1 style="color:red;">Welcome to Virtual Board</h1>
+    </div>
+    <!-- Add the "Start" button -->
+    <div class="text-center btn-margin mt-5 fluid-left">
+    <button class="btn btn-lg btn-dark" onclick="startApp()">Air Board</button>
+    
+    <!-- Add the "Board" button -->
+    
+    <button class="btn btn-lg btn-dark ml-5" onclick="runBoard()">White Board</button>
+    </div>
+    <script>
+        function startApp() {
+            // Send an HTTP request to the Flask route that starts the webcam
+            fetch('/start-capture')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+
+        function runBoard() {
+            // Send an HTTP request to the Flask route that runs the board.py file
+            fetch('/run-board')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
